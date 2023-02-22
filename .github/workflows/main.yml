@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Mirror to server
     steps:
-      - name: Mirror
-        uses: appleboy/ssh-action@master
+      - name: Git pull on VPS
+        uses: easingthemes/ssh-run@v0.4.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
@@ -27,7 +27,7 @@ jobs:
     name: deploy on vps
     steps:
       - name: Push on remote repo
-        uses: appleboy/ssh-action@master
+        uses: easingthemes/ssh-run@v0.4.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}

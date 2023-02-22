@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install SSH
-      run: apt-get update && apt-get install -y openssh-client
 
     - name: SSH connection
       uses: appleboy/ssh-action@v0.1.6

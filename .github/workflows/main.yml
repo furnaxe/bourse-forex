@@ -1,4 +1,4 @@
-name: Bourse
+name: Bourse Forex
 run-name: Deploy
 on:
   push:

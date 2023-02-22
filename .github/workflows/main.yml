@@ -1,22 +1,38 @@
-name: SSH connection
-
+name: Bourse
+run-name: Deploy
 on:
   push:
     branches:
       - main
-
+      
 jobs:
-  connect:
+  mirror:
     runs-on: ubuntu-latest
-
+    name: Mirror to server
     steps:
-
-    - name: SSH connection
-      uses: appleboy/ssh-action@v0.1.6
-      with:
-        ssh_host: 51.254.112.184
-        ssh_user: ubuntu
-        ssh_port: 22
-        password: ${{ secrets.SSH_PASSWORD }}
-        script: |
-          echo "Connected via SSH"
+      - name: Mirror
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /home/ubuntu/bourse-forex
+            git pull
+    
+  deploy:
+    runs-on: ubuntu-latest
+    needs: mirror
+    name: deploy on vps
+    steps:
+      - name: Push on remote repo
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            sudo systemctl stop bourse
+            sudo systemctl start bourse

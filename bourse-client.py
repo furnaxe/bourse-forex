@@ -64,7 +64,7 @@ while True:
         response1 = requests.get("https://query1.finance.yahoo.com/v6/finance/quote?symbols=EURUSD=X", headers=headers)
         market_price = response1.json()["quoteResponse"]["result"][0]["regularMarketPrice"]
         # Analyser la réponse JSON
-        print("Prix actuel EUR/USD : ", market_price)
+        print(f"Prix actuel EUR/USD : {market_price}")
         
         # Obtenir les données forex de l'API Alpha Vantage
         response2 = requests.get(f'https://www.alphavantage.co/query?function={FUNCTION}&from_symbol={SYMBOL}&to_symbol={TO_SYMBOL}&apikey={API_KEY}')

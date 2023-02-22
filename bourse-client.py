@@ -97,8 +97,8 @@ while True:
             
             # Créer le message e-mail
             message1 = email.message.EmailMessage()
-            message1.set_content("Recommandation : Acheter EUR/USD. Prix actuel : " + str(market_price) + ", objectif de vente : " + str(target_sell_price) + ", niveau d'achat : " + str(current_day_low))
-            message1['Subject'] = "Recommandation : Acheter EUR/USD. Prix actuel : " + str(market_price) + ", objectif de vente : " + str(target_sell_price) + ", niveau d'achat : " + str(current_day_low)
+            message1.set_content("Recommandation : Acheter EUR/USD")
+            message1['Subject'] = "Recommandation : Acheter EUR/USD. \nPrix actuel : " + str(market_price) + " \nObjectif de vente : " + str(target_sell_price) + " \nNiveau d'achat : " + str(current_day_low)
             message1['From'] = from_email
             message1['To'] = to_email
             
@@ -114,8 +114,8 @@ while True:
 
             # Créer le message e-mail
             message2 = email.message.EmailMessage()
-            message2.set_content("Recommandation : Vendre EUR/USD. Prix actuel : " + str(market_price) + ", objectif d'achat : " + str(target_buy_price) + ", niveau de vente : " + str(current_day_high))
-            message2['Subject'] = "Recommandation : Vendre EUR/USD. Prix actuel : " + str(market_price) + ", objectif d'achat : " + str(target_buy_price) + ", niveau de vente : " + str(current_day_high)
+            message2.set_content("Recommandation : Vendre EUR/USD")
+            message2['Subject'] = "Recommandation : Vendre EUR/USD. \nPrix actuel : " + str(market_price) + " \nObjectif d'achat : " + str(target_buy_price) + " \nNiveau de vente : " + str(current_day_high)
             message2['From'] = from_email
             message2['To'] = to_email
             
@@ -131,8 +131,8 @@ while True:
             
             # Créer le message e-mail
             message3 = email.message.EmailMessage()
-            message3.set_content("Position fermée : Vendre EUR/USD. Prix actuel : " + str(market_price) + ", profit réalisé : " + str(market_price - target_buy_price))
-            message3['Subject'] = "Position fermée : Vendre EUR/USD. Prix actuel : " + str(market_price) + ", profit réalisé : " + str(market_price - target_buy_price)
+            message3.set_content("Position fermée : Vendre EUR/USD")
+            message3['Subject'] = "Position fermée : Vendre EUR/USD. \nPrix actuel : " + str(market_price) + " \nProfit réalisé : " + str(market_price - target_buy_price)
             message3['From'] = from_email
             message3['To'] = to_email
             
@@ -149,8 +149,8 @@ while True:
             
             # Créer le message e-mail
             message4 = email.message.EmailMessage()
-            message4.set_content("Position fermée : Acheter EUR/USD. Prix actuel : " + str(market_price) + ", profit réalisé : " + str(target_sell_price - market_price))
-            message4['Subject'] = "Position fermée : Acheter EUR/USD. Prix actuel : " + str(market_price) + ", profit réalisé : " + str(target_sell_price - market_price)
+            message4.set_content("Position fermée : Acheter EUR/USD")
+            message4['Subject'] = "Position fermée : Acheter EUR/USD. \nPrix actuel : " + str(market_price) + " \nProfit réalisé : " + str(target_sell_price - market_price)
             message4['From'] = from_email
             message4['To'] = to_email
             

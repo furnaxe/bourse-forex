@@ -11,14 +11,16 @@ jobs:
     name: Mirror to server
     steps:
       - name: Git pull on VPS
-        uses: easingthemes/ssh-run@v0.4.0
+        uses: appleboy/ssh-action@v0.1.6
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.PORT }}
+          ssh_host: ${{ secrets.HOST }}
+          ssh_user: ${{ secrets.USER }}
+          ssh_port: ${{ secrets.PORT }}
+          password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            cd /home/ubuntu/bourse-forex
+            sudo apt-get update && sudo apt-get upgrade -y
+            sudo systemctl stop bourse
+            cd /home/ubuntu/bourse
             git pull
     
   deploy:
@@ -27,12 +29,11 @@ jobs:
     name: deploy on vps
     steps:
       - name: Push on remote repo
-        uses: easingthemes/ssh-run@v0.4.0
+        uses: appleboy/ssh-action@v0.1.6
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.PORT }}
+          ssh_host: ${{ secrets.HOST }}
+          ssh_user: ${{ secrets.USER }}
+          ssh_port: ${{ secrets.PORT }}
+          password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            sudo systemctl stop bourse
             sudo systemctl start bourse
